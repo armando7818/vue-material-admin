@@ -1,6 +1,6 @@
 # vuejs-material-theme
 
-> Vuejs 2.0 framework with Material UI Theme
+> Vuejs 2.0 admin framework with Material UI Theme
 
 ## Build Setup
 
