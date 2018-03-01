@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid grid-list-sm>
+  <v-container fluid grid-list-xl>
     <v-layout wrap row>
       <v-flex xs12 sm6 md3 d-flex
         v-for="card in statsCardOptions"
