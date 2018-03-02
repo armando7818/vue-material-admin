@@ -4,7 +4,7 @@
     absolute
     :mini-variant.sync="miniVariantSidebar"
     :clipped="sidebar.clipped"
-    :value="sidebar.opened"
+    v-model="sidebarOpenedStatus"
     enable-resize-watcher
     app
   >
@@ -116,9 +116,9 @@
           index,
         });
       },
-      toggleSidebar() {
-        this.updateSidebar(!this.sidebar.opened);
-      },
+      // toggleSidebar() {
+      //   this.updateSidebar(!this.sidebar.opened);
+      // },
       expandMatchedMenuList(route) {
         return route;
       },
@@ -135,6 +135,14 @@
         },
         set(state) {
           this.updateSidebarMiniVariant(state);
+        },
+      },
+      sidebarOpenedStatus: {
+        get() {
+          return this.sidebar.opened;
+        },
+        set(state) {
+          this.updateSidebar(state);
         },
       },
     },
