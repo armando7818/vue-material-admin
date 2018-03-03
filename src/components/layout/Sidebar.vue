@@ -90,14 +90,6 @@
   import { mapGetters, mapActions } from 'vuex';
 
   export default {
-    mounted() {
-      const route = this.$route;
-      debugger;
-      if (route.meta &&
-        Object.prototype.hasOwnProperty.call(route.meta, 'expanded')) {
-        this.expandMatchedMenuList(route);
-      }
-    },
     methods: {
       ...mapActions([
         'updateSidebar',
@@ -120,6 +112,8 @@
       //   this.updateSidebar(!this.sidebar.opened);
       // },
       expandMatchedMenuList(route) {
+        // TODO: get the route iterate through all menu items. If it is contained within the menu items
+        // And the expanded status isn't set to true change it. 
         return route;
       },
     },
@@ -148,7 +142,10 @@
     },
     watch: {
       $route(route) {
-        this.expandMatchedMenuList(route);
+        if (route.meta &&
+          Object.prototype.hasOwnProperty.call(route.meta, 'expanded')) {
+          this.expandMatchedMenuList(route);
+        }
       },
     },
   };

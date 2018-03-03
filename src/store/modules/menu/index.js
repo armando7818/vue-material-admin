@@ -40,12 +40,15 @@ const mutations = {
     const stateToModify = menuState;
     const menuItemToModify = menuItem;
     if (menuItemToModify.index > -1) {
-      if (stateToModify.items[menuItemToModify.index] &&
-        stateToModify.items[menuItemToModify.index].meta) {
-        stateToModify.items[menuItemToModify.index].meta.expanded = menuItemToModify.expanded;
-      }
-    } else if (menuItemToModify.item && 'expanded' in menuItemToModify.item.meta) {
-      menuItemToModify.item.meta.expanded = menuItemToModify.expanded;
+      stateToModify.items.forEach((item, index) => {
+        if (item.meta && 'expanded' in item.meta) {
+          if (index === menuItemToModify.index) {
+            stateToModify.items[index].meta.expanded = menuItemToModify.expanded;
+          } else {
+            stateToModify.items[index].meta.expanded = false;
+          }
+        }
+      });
     }
   },
 };
