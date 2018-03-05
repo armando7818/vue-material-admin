@@ -49,6 +49,9 @@ const mutations = {
           }
         }
       });
+    } else if (menuItemToModify.item.meta
+      && 'expanded' in menuItemToModify.item.meta) {
+      menuItemToModify.item.meta.expanded = menuItemToModify.expanded;
     }
   },
 };

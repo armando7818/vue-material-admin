@@ -1,5 +1,5 @@
 <template>
-  <v-footer :fixed="footer.fixed" app>
+  <v-footer app>
     <span>&copy; {{getTitle}}</span>
   </v-footer>
 </template>

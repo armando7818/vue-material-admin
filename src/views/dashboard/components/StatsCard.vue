@@ -1,13 +1,14 @@
 <template>
   <v-card>
-    <v-layout row align-center class="h-100 b-b">
+    <v-layout row align-center class="stat-size">
       <v-flex class="text-xs-center">
         <span class="display-1">
           {{statText}}
         </span>
       </v-flex>
     </v-layout>
-    <div class="stats-label">
+    <div class="stats-label overflow-hidden">
+      <span class="seperator"></span>
       <v-chip
         label
         class="subheading"
@@ -16,7 +17,7 @@
         {{labelText}}
       </v-chip>
     </div>
-    <v-layout row align-center class="h-100 b-t">
+    <v-layout row align-center class="stat-size">
       <v-flex
         class="text-xs-center">
         <v-icon :color="iconColor" class="text-xs-center" x-large>{{icon}}</v-icon>
@@ -34,6 +35,7 @@
 </script>
 
 <style scoped>
+
 .contain-label {
   position: relative;
 }
@@ -48,7 +50,18 @@
   transform: translateY(-50%);
 }
 
-.h-100 {
+.seperator {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  border: solid whitesmoke 1px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: auto;
+}
+
+.stat-size {
   height: 90px;
 }
 

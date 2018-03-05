@@ -112,9 +112,39 @@
       //   this.updateSidebar(!this.sidebar.opened);
       // },
       expandMatchedMenuList(route) {
-        // TODO: get the route iterate through all menu items. If it is contained within the menu items
-        // And the expanded status isn't set to true change it. 
-        return route;
+        const matched = route.matched;
+        const lastMatched = matched[matched.length - 1];
+        let parent = lastMatched.parent || lastMatched;
+        const isParent = parent === lastMatched;
+
+        if (isParent) {
+          const p = this.findParentFromMenu(route);
+          if (p) {
+            parent = p;
+          }
+        }
+
+        if ('expanded' in parent.meta && !isParent) {
+          this.expandMenu({
+            item: parent,
+            expanded: true,
+          });
+        }
+      },
+      findParentFromMenu(route) {
+        const menu = this.menuitems;
+        for (let i = 0, l = menu.length; i < l; i += 1) {
+          const item = menu[i];
+          const k = item.children && item.children.length;
+          if (k) {
+            for (let j = 0; j < k; j += 1) {
+              if (item.children[j].name === route.name) {
+                return item;
+              }
+            }
+          }
+        }
+        return '';
       },
     },
     // TODO: need to add an expand menu function so the model is not modified directly
@@ -144,6 +174,8 @@
       $route(route) {
         if (route.meta &&
           Object.prototype.hasOwnProperty.call(route.meta, 'expanded')) {
+          this.expandMatchedMenuList(route);
+        } else if (route.name) {
           this.expandMatchedMenuList(route);
         }
       },

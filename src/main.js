@@ -14,10 +14,10 @@ import router from './router';
 import store from './store';
 
 Vue.router = router;
+sync(store, router, { moduleName: 'RouteModule' });
 Vue.component('echart', IEcharts);
 Vue.use(VueAxios, axios);
 Vue.use(Vuetify);
-sync(store, router);
 
 Vue.config.devtools = true;
 Vue.config.productionTip = false;
