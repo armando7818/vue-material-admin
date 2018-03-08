@@ -4,7 +4,7 @@
     dark
     color="indigo"
     :clipped-left="navbar.clippedLeft"
-    :fixed="navbar.fixed"
+    :absolute="!navbar.absolute"
     app>
     <v-toolbar-side-icon
       @click.stop="toggleSidebar">

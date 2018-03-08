@@ -48,13 +48,13 @@ export const expandMenu = ({ commit }, menuItem) => {
   }
 };
 
-export const toggleNavbarFixed = ({ commit }, status) => {
-  commit(types.TOGGLE_NAVBAR_FIXED, status);
+export const toggleNavbarAbsolute = ({ commit }, status) => {
+  commit(types.TOGGLE_NAVBAR_ABSOLUTE, status);
 };
 
-export const updateNavbarFixed = ({ commit }, navbarFixed) => {
-  if (isBoolean(navbarFixed)) {
-    commit(types.UPDATE_NAVBAR_FIXED, navbarFixed);
+export const updateNavbarAbsolute = ({ commit }, navbarAbsolute) => {
+  if (isBoolean(navbarAbsolute)) {
+    commit(types.UPDATE_NAVBAR_ABSOLUTE, navbarAbsolute);
   }
 };
 
@@ -80,12 +80,12 @@ export const updateConfigurator = ({ commit }, opened) => {
   }
 };
 
-export const toggleFooterFixed = ({ commit }, status) => {
-  commit(types.TOGGLE_FOOTER_FIXED, status);
+export const toggleFooterAbsolute = ({ commit }, status) => {
+  commit(types.TOGGLE_FOOTER_ABSOLUTE, status);
 };
 
-export const updateFooterFixed = ({ commit }, fixed) => {
-  if (isBoolean(fixed)) {
-    commit(types.UPDATE_FOOTER_FIXED, fixed);
+export const updateFooterAbsolute = ({ commit }, absolute) => {
+  if (isBoolean(absolute)) {
+    commit(types.UPDATE_FOOTER_ABSOLUTE, absolute);
   }
 };

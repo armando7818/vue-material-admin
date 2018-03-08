@@ -1,6 +1,11 @@
 <template>
-  <v-footer app>
-    <span>&copy; {{getTitle}}</span>
+  <v-footer
+    :absolute="footer.absolute"
+    app
+    inset>
+    <span 
+      v-html="getTitle">
+    </span>
   </v-footer>
 </template>
 

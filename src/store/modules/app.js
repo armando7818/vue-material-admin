@@ -5,6 +5,7 @@ const state = {
     opened: false,
     clipped: true,
     miniVariant: false,
+    absolute: false,
   },
   // TODO: Need to put title here or an image.
   // Maybe remove clipped left if you have an image and remove it based
@@ -12,15 +13,15 @@ const state = {
   navbar: {
     logo: '',
     title: 'Armando Custom Admin Theme',
-    fixed: true,
+    absolute: true,
     clippedLeft: true,
   },
   configurator: {
     opened: false,
   },
   footer: {
-    fixed: false,
-    text: '',
+    absolute: false,
+    text: '&copy; Vue Material Admin Example',
   },
 };
 
@@ -51,13 +52,13 @@ const mutations = {
     stateToMutate.sidebar.miniVariant = miniVariant;
   },
   // Navbar mutations
-  [types.TOGGLE_NAVBAR_FIXED](appState) {
+  [types.TOGGLE_NAVBAR_ABSOLUTE](appState) {
     const stateToMutate = appState;
-    stateToMutate.navbar.fixed = !appState.navbar.fixed;
+    stateToMutate.navbar.absolute = !appState.navbar.absolute;
   },
-  [types.UPDATE_NAVBAR_FIXED](appState, navbarFixed) {
+  [types.UPDATE_NAVBAR_ABSOLUTE](appState, navbarAbsolute) {
     const stateToMutate = appState;
-    stateToMutate.navbar.fixed = navbarFixed;
+    stateToMutate.navbar.absolute = navbarAbsolute;
   },
   [types.TOGGLE_NAVBAR_CLIPPED_LEFT](appState) {
     const stateToMutate = appState;
@@ -67,13 +68,13 @@ const mutations = {
     const stateToMutate = appState;
     stateToMutate.navbar.clippedLeft = navbarClippedLeft;
   },
-  [types.TOGGLE_FOOTER_FIXED](appState) {
+  [types.TOGGLE_FOOTER_ABSOLUTE](appState) {
     const stateToMutate = appState;
-    stateToMutate.footer.fixed = !appState.footer.fixed;
+    stateToMutate.footer.absolute = !appState.footer.absolute;
   },
-  [types.UPDATE_FOOTER_FIXED](appState, fixed) {
+  [types.UPDATE_FOOTER_ABSOLUTE](appState, absolute) {
     const stateToMutate = appState;
-    stateToMutate.footer.fixed = fixed;
+    stateToMutate.footer.absolute = absolute;
   },
   [types.TOGGLE_CONFIGURATOR](appState) {
     const stateToMutate = appState;

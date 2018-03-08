@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer
     persistent
-    absolute
+    :absolute="sidebar.absolute"
     :mini-variant.sync="miniVariantSidebar"
     :clipped="sidebar.clipped"
     v-model="sidebarOpenedStatus"

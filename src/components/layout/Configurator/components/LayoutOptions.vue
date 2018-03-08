@@ -31,7 +31,7 @@
     <v-flex xs6>
       <v-switch
         label="Fixed"
-        v-model="fixedNavbar">
+        v-model="absoluteNavbar">
       </v-switch>
     </v-flex>
     <v-flex xs6>
@@ -46,8 +46,8 @@
     </v-flex>
     <v-flex xs6>
       <v-switch
-        label="Fixed"
-        v-model="fixedFooter">
+        label="Disable Fixed"
+        v-model="absoluteFooter">
       </v-switch>
     </v-flex>
   </v-layout>
@@ -67,9 +67,9 @@ export default {
     ...mapActions([
       'updateSidebarMiniVariant',
       'updateSidebarClipped',
-      'updateNavbarFixed',
+      'updateNavbarAbsolute',
       'updateNavbarClippedLeft',
-      'updateFooterFixed',
+      'updateFooterAbsolute',
     ]),
   },
   computed: {
@@ -78,13 +78,6 @@ export default {
       'navbar',
       'footer',
     ]),
-    // ...mapState({
-    //   miniVariantSidebar: state => state.sidebar.miniVariant,
-    //   clippedSidebar: state => state.sidebar.clipped,
-    //   fixedNavbar: state => state.navbar.fixed,
-    //   clippedLeftNavbar: state => state.navbar.clippedLeft,
-    //   fixedFooter: state => state.footer.fixed,
-    // }),
     // Sidebar
     miniVariantSidebar: {
       get() {
@@ -103,12 +96,15 @@ export default {
       },
     },
     // navbar
-    fixedNavbar: {
+    absoluteNavbar: {
       get() {
-        return this.navbar.fixed;
+        // Absolute === true means it remains on bottom of page
+        // Otherwise it is fixed as part of the application
+        // https://github.com/vuetifyjs/vuetify/issues/2938
+        return this.navbar.absolute;
       },
       set(state) {
-        this.updateNavbarFixed(state);
+        this.updateNavbarAbsolute(state);
       },
     },
     clippedLeftNavbar: {
@@ -119,12 +115,12 @@ export default {
         this.updateNavbarClippedLeft(state);
       },
     },
-    fixedFooter: {
+    absoluteFooter: {
       get() {
-        return this.footer.fixed;
+        return this.footer.absolute;
       },
       set(state) {
-        this.updateFooterFixed(state);
+        this.updateFooterAbsolute(state);
       },
     },
   },
