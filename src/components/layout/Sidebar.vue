@@ -35,7 +35,7 @@
             v-if="child.path"
             :key="child.path"
             :to="generatePath(item, child)"
-            :exact="true"
+            exact
             >
             <v-list-tile-content>
               <v-list-tile-title>{{ getMenuItemName(child) }}</v-list-tile-title>
@@ -50,7 +50,7 @@
           :key="item.path"
           :to="item.path"
           :inactive="!item.path && item.path.length === 0"
-          :exact="true"
+          exact
           @click="toggleMenu(item, index)">
           <v-list-tile-action>
             <v-icon>{{ item.meta.icon }}</v-icon>
