@@ -1,26 +1,35 @@
 import lazyLoading from './lazyLoading';
 
 export default {
-  name: 'Graphs',
   path: '/graphs',
   meta: {
+    name: () => 'Graph',
     icon: 'pie_chart',
     expanded: false,
   },
-  component: lazyLoading('dashboard', true),
-  children: [{
-    name: 'Bar',
-    path: 'bar',
-    meta: {
-      link: 'dashboard/index.vue',
+  component: {
+    template: '<router-view/>',
+  },
+  children: [
+    {
+      path: '',
+      component: lazyLoading('dashboard', true),
     },
-    component: lazyLoading('dashboard', true),
-  }, {
-    name: 'Pie',
-    path: 'pie',
-    meta: {
-      link: 'dashboard/index.vue',
+    {
+      path: 'bar',
+      meta: {
+        name: () => 'Bar',
+        link: 'dashboard/index.vue',
+      },
+      component: lazyLoading('dashboard', true),
     },
-    component: lazyLoading('dashboard', true),
-  }],
+    {
+      path: 'pie',
+      meta: {
+        name: () => 'Pie',
+        link: 'dashboard/index.vue',
+      },
+      component: lazyLoading('dashboard', true),
+    },
+  ],
 };

@@ -19,9 +19,9 @@ http://preview.themeforest.net/item/material-design-reactjs-admin-web-app-with-b
 const state = {
   items: [
     {
-      name: 'Dashboard',
       path: '/',
       meta: {
+        name: () => 'Dashboard',
         icon: 'business_center',
       },
       component: lazyLoading('dashboard', true),

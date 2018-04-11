@@ -12,6 +12,8 @@ import 'styles/z-index.css';
 import App from './App';
 import router from './router';
 import store from './store';
+import filters from './filters';
+import utils from './utils';
 
 Vue.router = router;
 sync(store, router, { moduleName: 'RouteModule' });
@@ -22,11 +24,26 @@ Vue.use(Vuetify);
 Vue.config.devtools = true;
 Vue.config.productionTip = false;
 
+// Registers helper util functions to prototype to make available to all Vue components.
+Object.entries(utils).forEach(([key, value]) => {
+  Object.defineProperty(Vue.prototype, `$$${key}`, { value });
+});
+
+// Registers all filters under filter folder.
+Object.keys(filters).forEach(helperFilter => {
+  Object.keys(filters[helperFilter]).forEach(functionName => {
+    Vue.filter(
+      `${helperFilter}_${functionName}`,
+      filters[helperFilter][functionName],
+    );
+  });
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
-  template: '<App/>',
   components: { App },
+  template: '<App/>',
 });
