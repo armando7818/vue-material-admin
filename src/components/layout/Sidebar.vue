@@ -14,30 +14,31 @@
         v-for="(item, index) in menuitems"
       >
         <v-list-group
-          v-if="item.children"
+          v-if="isDropdownList(item)"
           no-action
           :group="item.path"
           :value="item.meta.expanded"
           :prepend-icon="item.meta.icon"
           @click="toggleMenu(item, index)"
-          :key="item.name">
+          :key="item.path">
           <v-list-tile
             slot="activator"
             :exact="true"
             :inactive="!item.path && item.path.length === 0"
             >
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+              <v-list-tile-title>{{ getMenuItemName(item) }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-list-tile
             v-for="child in item.children"
-            :key="child.name"
+            v-if="child.path"
+            :key="child.path"
             :to="generatePath(item, child)"
             :exact="true"
             >
             <v-list-tile-content>
-              <v-list-tile-title>{{ child.name }}</v-list-tile-title>
+              <v-list-tile-title>{{ getMenuItemName(child) }}</v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-action v-if="child.meta.icon">
               <v-icon>{{ child.meta.icon }}</v-icon>
@@ -46,7 +47,7 @@
         </v-list-group>
         <v-list-tile
           v-else
-          :key="item.name"
+          :key="item.path"
           :to="item.path"
           :inactive="!item.path && item.path.length === 0"
           :exact="true"
@@ -55,7 +56,7 @@
             <v-icon>{{ item.meta.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+            <v-list-tile-title>{{ getMenuItemName(item) }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </template>
@@ -123,6 +124,12 @@
         }
         return '';
       },
+      isDropdownList(parentItem) {
+        return Object.prototype.hasOwnProperty.call(parentItem.meta, 'expanded');
+      },
+      getMenuItemName(item) {
+        return item.name || item.meta.name();
+      }
     },
     // TODO: need to add an expand menu function so the model is not modified directly
     computed: {

@@ -1,25 +1,14 @@
 import * as types from '../../mutation-types';
 import lazyLoading from './lazyLoading';
 import axios from './axios';
-import elements from './elements';
 import forms from './forms';
-import tables from './tables';
 import graphs from './graphs';
-import pages from './pages';
 
-// show: meta.label -> name
-// name: component name
-// meta.label: display label
-/*
-// http://d335etuyc199v1.cloudfront.net/
-http://preview.themeforest.net/item/material-design-reactjs-admin-web-app-with-bootstrap-4/full_screen_preview/19582625?_ga=2.236410561.1936217708.1509822733-913885259.1502817304
-*/
-
-// TODO Add multiple menu layers deep
 const state = {
   items: [
     {
       path: '/',
+      name: 'Dashboard',
       meta: {
         name: () => 'Dashboard',
         icon: 'business_center',
@@ -27,11 +16,8 @@ const state = {
       component: lazyLoading('dashboard', true),
     },
     axios,
-    elements,
     forms,
-    tables,
     graphs,
-    pages,
   ],
 };
 

@@ -3,7 +3,7 @@ import lazyLoading from './lazyLoading';
 export default {
   path: '/graphs',
   meta: {
-    name: () => 'Graph',
+    name: () => 'Graphs',
     icon: 'pie_chart',
     expanded: false,
   },
@@ -12,10 +12,12 @@ export default {
   },
   children: [
     {
+      name: 'Graphs',
       path: '',
       component: lazyLoading('dashboard', true),
     },
     {
+      name: 'Bar',
       path: 'bar',
       meta: {
         name: () => 'Bar',
@@ -24,6 +26,7 @@ export default {
       component: lazyLoading('dashboard', true),
     },
     {
+      name: 'Pie',
       path: 'pie',
       meta: {
         name: () => 'Pie',

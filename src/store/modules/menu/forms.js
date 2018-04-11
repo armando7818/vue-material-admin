@@ -12,10 +12,12 @@ export default {
   },
   children: [
     {
+      name: 'Forms',
       path: '',
       component: lazyLoading('dashboard', true),
     },
     {
+      name: 'Steppers',
       path: 'steppers',
       meta: {
         name: () => 'Steppers',
@@ -24,6 +26,7 @@ export default {
       component: lazyLoading('dashboard', true),
     },
     {
+      name: 'Layout',
       path: 'layout',
       meta: {
         name: () => 'Layout',
