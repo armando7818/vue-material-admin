@@ -8,7 +8,6 @@ import VueAxios from 'vue-axios';
 import IEcharts from 'vue-echarts-v3';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.css';
-import 'styles/z-index.css';
 import App from './App';
 import router from './router';
 import store from './store';
