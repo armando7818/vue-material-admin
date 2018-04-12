@@ -8,6 +8,7 @@
     enable-resize-watcher
     app
   >
+    <!-- TODO: Finish sidebar with parent with no registered route-->
     <v-list
       dense>
       <template 
@@ -20,11 +21,11 @@
           :value="item.meta.expanded"
           :prepend-icon="item.meta.icon"
           @click="toggleMenu(item, index)"
-          :key="item.path">
+          :key="item.meta.icon">
           <v-list-tile
             slot="activator"
             :exact="true"
-            :inactive="!item.path && item.path.length === 0"
+            :inactive="isInactive(item)"
             >
             <v-list-tile-content>
               <v-list-tile-title>{{ getMenuItemName(item) }}</v-list-tile-title>
@@ -47,7 +48,7 @@
         </v-list-group>
         <v-list-tile
           v-else
-          :key="item.path"
+          :key="item.meta.icon"
           :to="item.path"
           :inactive="!item.path && item.path.length === 0"
           exact
@@ -129,7 +130,18 @@
       },
       getMenuItemName(item) {
         return item.name || item.meta.name();
-      }
+      },
+      isInactive(item) {
+        let menuItemInactive = true;
+
+        if(!('path' in item)) {
+          menuItemInactive = false;
+        } else {
+          menuItemInactive = !item.path && item.path.length === 0;
+        }
+
+        return menuItemInactive;
+      },
     },
     // TODO: need to add an expand menu function so the model is not modified directly
     computed: {

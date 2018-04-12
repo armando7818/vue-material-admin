@@ -14,6 +14,7 @@ export default {
     {
       name: 'Graphs',
       path: '',
+      redirect: '/',
       component: lazyLoading('dashboard', true),
     },
     {
